@@ -13,7 +13,6 @@ public class User {
     private String email;
     private String firstName;
     private String lastName;
-    private String profilePicture;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Contact> contacts;
@@ -64,14 +63,6 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
     }
 
     public List<Contact> getContacts() {

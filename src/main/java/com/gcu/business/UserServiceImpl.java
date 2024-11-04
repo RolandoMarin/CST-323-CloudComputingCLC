@@ -15,12 +15,22 @@ public class UserServiceImpl implements UserService {
    private UserRepository userRepository;
 
 @Override
-public User Save(User user) {
+public User save(User user) {
     return userRepository.save(user);
 }
 
 @Override
 public User validatUser(String email, String password) {
    return userRepository.findByEmailAndPassword(email, password);
+}
+@Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+@Override
+public User findByUsername(String username) {
+  
+   return userRepository.findByUsername(username);
 }
 }

@@ -58,10 +58,21 @@ public class DashboardController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateContact(@PathVariable("id") Integer id, Contact contact, RedirectAttributes redirect) {
-        contact.setId(id);
-        contactService.save(contact);
-        redirect.addFlashAttribute("success", "Contact updated successfully");
+    public String updateContact(@PathVariable("id") Integer id, Contact contact, HttpSession httpSession, RedirectAttributes redirect) {
+        User currentUser = checkSession(httpSession);
+        if (currentUser == null) return "redirect:/login/";
+    
+      
+        Contact existingContact = contactService.getContactById(id);
+        if (existingContact != null) {
+            // Update only the editable fields
+            contact.setId(id);
+            contact.setUser(existingContact.getUser());
+            contactService.save(contact);
+            redirect.addFlashAttribute("success", "Contact updated successfully");
+        } else {
+            redirect.addFlashAttribute("error", "Contact not found");
+        }
         return "redirect:/dashboard";
     }
 
