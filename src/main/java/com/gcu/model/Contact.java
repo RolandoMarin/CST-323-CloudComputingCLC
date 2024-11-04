@@ -1,7 +1,7 @@
 package com.gcu.model;
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name = "contacts")
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

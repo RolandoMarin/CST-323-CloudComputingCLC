@@ -1,28 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Dashboard</title>
+    <title>Your Contacts</title>
 </head>
 <body>
-    <h2>Contact List</h2>
-    
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="contact : ${contacts}">
-                <td th:text="${contact.contactName}"></td>
-                <td th:text="${contact.contactEmail}"></td>
-                <td th:text="${contact.contactPhone}"></td>
-                <td th:text="${contact.contactAddress}"></td>
-            </tr>
-        </tbody>
-    </table>
+<h1>Your Contacts</h1>
+
+<div th:if="${success}">
+    <p th:text="${success}"></p>
+</div>
+
+<!-- Display list of contacts -->
+<div th:if="${contacts}">
+    <ul>
+        <li th:each="contact : ${contacts}">
+            <span th:text="${contact.contactName}"></span> - 
+            <span th:text="${contact.contactEmail}"></span> - 
+            <span th:text="${contact.contactPhone}"></span> - 
+            <span th:text="${contact.contactAddress}"></span>
+
+            <!-- Edit link -->
+            <a th:href="@{/dashboard/edit/{id}(id=${contact.id})}">Edit</a>
+
+            <!-- Delete form -->
+            <form th:action="@{/dashboard/delete/{id}(id=${contact.id})}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    </ul>
+</div>
+
+<!-- Link to create a new contact -->
+<a href="/dashboard/create">Create New Contact</a>
 </body>
 </html>

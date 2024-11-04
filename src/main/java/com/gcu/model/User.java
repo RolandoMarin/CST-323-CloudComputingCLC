@@ -3,7 +3,7 @@ package com.gcu.model;
 import jakarta.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
