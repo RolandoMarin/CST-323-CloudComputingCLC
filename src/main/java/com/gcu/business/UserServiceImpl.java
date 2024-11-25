@@ -16,6 +16,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+      /**
+     * Saves a new user to the database.
+     *
+     * @param user The user object to be saved.
+     * @return The saved user object.
+     */
     @Override
     public User save(User user) {
         logger.info("Entering method save");
@@ -23,7 +29,13 @@ public class UserServiceImpl implements UserService {
         logger.info("Exiting method save");
         return savedUser;
     }
-
+    /**
+     * Validates a user based on their email and password.
+     *
+     * @param email The user's email address.
+     * @param password The user's password.
+     * @return The validated user, or null if not found.
+     */
     @Override
     public User validatUser(String email, String password) {
         logger.info("Entering method validatUser");
@@ -32,6 +44,12 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+      /**
+     * Finds a user by their email address.
+     *
+     * @param email The user's email address.
+     * @return The found user, or null if not found.
+     */
     @Override
     public User findByEmail(String email) {
         logger.info("Entering method findByEmail");
@@ -40,6 +58,12 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+     /**
+     * Finds a user by their username.
+     *
+     * @param username The user's username.
+     * @return The found user, or null if not found.
+     */
     @Override
     public User findByUsername(String username) {
         logger.info("Entering method findByUsername");
